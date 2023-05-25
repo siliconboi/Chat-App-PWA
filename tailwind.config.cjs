@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+// eslint-disable-next-line no-undef
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./src/**/*.{html,js,jsx}"],
   theme: {
     extend: {
       colors: {
@@ -48,7 +49,5 @@ module.exports = {
       "5xl": "1.5rem",
     },
   },
-  corePlugins: {
-    preflight: false,
-  },
+  plugins: []
 };
