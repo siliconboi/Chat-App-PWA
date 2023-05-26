@@ -25,7 +25,7 @@ const Results = () => {
         <InfiniteScroll
           hasMore={hasNextPage}
           loadMore={fetchNextPage}
-          isReverse
+          isReverse={true}
         >
           {data?.pages?.map((page) =>
             page?.json?.chats?.map((message) => (
