@@ -3,22 +3,40 @@ import { Message } from "./Message";
 import { fetchChats } from "../lib/fetchChats";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-const Results = ()=>{
-    const { data, isLoading, isError, hasNextPage, fetchNextPage } =
-useInfiniteQuery("posts", fetchChats, {
-  getNextPageParam: (lastPage, pages) => {
-   return lastPage.nextPage;
-  },
-});
-    return(
-        <div>
-        <InfiniteScroll hasMore={hasNextPage} loadMore={fetchNextPage} isReverse>
-        {data.chats.pages.map((page) =>
-          page.json.chats.map((message) => <Message key={message.id} message={message} />)
-        )}
-      </InfiniteScroll>
-      </div>
-    )
-}
+const Results = () => {
+  const { data, isLoading, isError, hasNextPage, fetchNextPage } =
+    useInfiniteQuery(["chats"], fetchChats, {
+      getNextPageParam: (lastPage, pages) => {
+        console.log(pages);
+        if(lastPage.nextPage<lastPage.totalPages)
+        return lastPage.nextPage;
+        return undefined
+      },
+    });
+  return (
+    <>
+      {isLoading ? (
+        <div>loading...</div>
+      ) : isError ? (
+        <p>There was an error</p>
+      ) : (
+        
+    <div className="h-full w-full overflow-y-scroll">
+        <InfiniteScroll
+          hasMore={hasNextPage}
+          loadMore={fetchNextPage}
+          isReverse
+        >
+          {data?.pages?.map((page) =>
+            page?.json?.chats?.map((message) => (
+              <Message key={message.id} message={message} />
+            ))
+          )}
+        </InfiniteScroll>
+        </div>
+      )}
+      </>
+  );
+};
 
-export default Results
+export default Results;

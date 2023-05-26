@@ -1,6 +1,6 @@
 const Header = () => {
     return (
-      <div className="absolute top-[2.94rem] left-[0rem] flex flex-col pt-[1.25rem] px-[1rem] pb-[1rem] items-start justify-start gap-[1rem] text-left text-[1.5rem] text-gray-200 font-mulish border-b-[1px] border-solid border-gainsboro">
+      <div className="left-[0rem] flex flex-col pt-[1.25rem] px-[1rem] pb-[1rem] items-start justify-start gap-[1rem] text-left text-[1.5rem] text-gray-200 font-mulish border-b-[1px] border-solid border-gainsboro">
         <div className="self-stretch flex flex-row items-center justify-start gap-[0.75rem]">
           <img
             className="relative w-[1.5rem] h-[1.5rem] overflow-hidden shrink-0"
